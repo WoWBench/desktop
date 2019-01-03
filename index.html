@@ -2,18 +2,23 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>WoWbench</title>
+    <link rel="stylesheet" src="dist/bulma.css" type="text/css" />
+    <link rel="stylesheet" src="dist/app.css" type="text/css" />
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <div id="app" class="content"></div>
+
     <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!-- DEBUG INFO
     We are using Node.js <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+    -->
 
     <script>
-      // You can also require other files to run in this process
       require('./renderer.js')
     </script>
+    <script src="dist/app.js"></script>
   </body>
 </html>
