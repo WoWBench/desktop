@@ -1,4 +1,16 @@
+:root {
+  --text-color: #ececec
+}
+
 html, body {
   background: #131313;
-  color: #ececec;
+  color: var(--text-color);
+}
+
+.content {
+  color: var(--text-color);
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+  }
 }
