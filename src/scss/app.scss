@@ -1,10 +1,21 @@
 :root {
-  --text-color: #ececec
+  --text-color: #ececec;
+  --bg-color: #131313;
+  --navbar-bg: #313131;
 }
 
 html, body {
-  background: #131313;
+  background: var(--bg-color);
   color: var(--text-color);
+}
+
+.navbar {
+  background-color: var(--navbar-bg);
+  color: var(--text-color);
+
+  .navbar-brand a {
+    color: var(--text-color);
+  }
 }
 
 .content {

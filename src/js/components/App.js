@@ -1,9 +1,13 @@
 import React from 'react'
+import { Navbar } from './Bulma/Navbar'
 
 export class App extends React.Component {
   render () {
     return (
-      <h1>Hello</h1>
+      <>
+        <Navbar brand="WoWBench" />
+        <h1>Hello</h1>
+      </>
     )
   }
 }
