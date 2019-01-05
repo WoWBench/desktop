@@ -7,6 +7,7 @@ export class App extends React.Component {
       <>
         <Navbar brand="WoWBench" />
         <h1>Hello</h1>
+        <button onClick={close}>Close</button>
       </>
     )
   }

@@ -1,12 +1,12 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
+// // This file is required by the index.html file and will
+// // be executed in the renderer process for that window.
+// // All of the Node.js APIs are available in this process.
 
 const WB_VERSION = '0.1.0'
 const WB_BUILD = 0
 const store = window.localStorage
 
-const addStylesheet = (stylesheet) => {
+const addStylesheet = function (stylesheet) {
   var head  = document.getElementsByTagName('head')[0];
   var link  = document.createElement('link');
   link.rel  = 'stylesheet';
@@ -34,12 +34,16 @@ function init() {
 
   let title = window.document.title
   title += ` v${ver}`
-  window.document.title = title
+   window.document.title = title
 
   console.log(`Version: ${ver} [${b}]`)
 
   addStylesheet('bulma')
   addStylesheet('app')
+}
+
+function close() {
+  app.quit()
 }
 
 function log(message) {
