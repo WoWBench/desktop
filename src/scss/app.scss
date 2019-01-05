@@ -1,7 +1,8 @@
 :root {
+  --bg-horde: #380000;
   --text-color: #ececec;
-  --bg-color: #131313;
-  --navbar-bg: #313131;
+  --bg-color: #000b17;
+  --navbar-bg: var(--bg-horde);
 }
 
 html, body {

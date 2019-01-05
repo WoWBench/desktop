@@ -16,6 +16,7 @@ body, #app {
 }
 
 html {
+    background: none;
     overflow: hidden;
 }
 
@@ -31,9 +32,10 @@ textarea {
 
 // Window Action Buttons (close, minimize, fullscreen etc.)
 .window-actions {
+    --inset: 12px;
     position: fixed;
-    right: 20px;
-    top: 0;
+    right: var(--inset);
+    top: var(--inset);
     z-index: 250;
 
     button {
@@ -41,5 +43,11 @@ textarea {
         //border: 1px solid;
         border: none;
         border-radius: 50%;
+    }
+
+    svg {
+        &.fa-times {
+            color: white;
+        }
     }
 }

@@ -9,7 +9,7 @@ export class App extends React.Component {
         <Navbar brand="WoWBench" />
         <h1>Hello</h1>
         <div className="window-actions">
-          <button onClick={close}><FontAwesomeIcon icon="times" /></button>
+          <button onClick={close}><FontAwesomeIcon icon="times" size="2x" /></button>
         </div>
       </>
     )
