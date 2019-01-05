@@ -6,6 +6,18 @@ const WB_VERSION = '0.1.0'
 const WB_BUILD = 0
 const store = window.localStorage
 
+const addScript = function (script) {
+  var head  = document.getElementsByTagName('head')[0];
+  var script = document.createElement('script');
+  script.src = 'dist/' + script + '.js'
+
+  // link.rel  = 'stylesheet';
+  // link.type = 'text/css';
+  // link.href = 'dist/' + stylesheet + '.css';
+  // link.media = 'all';
+  head.appendChild(script);
+}
+
 const addStylesheet = function (stylesheet) {
   var head  = document.getElementsByTagName('head')[0];
   var link  = document.createElement('link');

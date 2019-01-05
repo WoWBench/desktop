@@ -1,0 +1,45 @@
+#app {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
+  
+body, #app {
+    -webkit-app-region: drag;
+    -ms-overflow-style: scrollbar;
+}
+  
+body, #app {
+    overflow: hidden;
+}
+
+html {
+    overflow: hidden;
+}
+
+// Make the following items undraggable (required to make them clickabble).
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="text"],
+button,
+textarea {
+	-webkit-app-region: no-drag;
+}
+
+// Window Action Buttons (close, minimize, fullscreen etc.)
+.window-actions {
+    position: fixed;
+    right: 20px;
+    top: 0;
+    z-index: 250;
+
+    button {
+        background: none;
+        //border: 1px solid;
+        border: none;
+        border-radius: 50%;
+    }
+}

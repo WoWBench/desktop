@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navbar } from './Bulma/Navbar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export class App extends React.Component {
   render () {
@@ -7,7 +8,9 @@ export class App extends React.Component {
       <>
         <Navbar brand="WoWBench" />
         <h1>Hello</h1>
-        <button onClick={close}>Close</button>
+        <div className="window-actions">
+          <button onClick={close}><FontAwesomeIcon icon="times" /></button>
+        </div>
       </>
     )
   }
