@@ -16,6 +16,10 @@ mix
   .ts('src/ts/app.tsx', 'dist')
   .sass('src/scss/app.scss', 'dist')
   .sass('src/scss/bulma.scss', 'dist')
+  .sourceMaps()
+  .webpackConfig({
+    target: 'electron-renderer'
+  })
 ;
 
 // Full API
