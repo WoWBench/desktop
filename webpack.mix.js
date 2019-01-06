@@ -12,7 +12,8 @@ let mix = require('laravel-mix');
  */
 
 mix
-  .react('src/js/app.js', 'dist')
+  //.react('src/js/app.js', 'dist')
+  .ts('src/ts/app.tsx', 'dist')
   .sass('src/scss/app.scss', 'dist')
   .sass('src/scss/bulma.scss', 'dist')
 ;

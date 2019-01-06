@@ -1,6 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 
-export class Navbar extends React.Component {
+type MyProps = { brand?: string, brandLogo?: any };
+type State = { brand?: string, brandLogo?: any }
+export class Navbar extends React.Component<MyProps, State> {
   /**
    * Has Brand or Logo
    * @returns {boolean}
@@ -18,10 +20,12 @@ export class Navbar extends React.Component {
       return ''
     }
 
-    let brandLogo = ''
+    let brandLogo;
+
     if (typeof this.props.brandLogo !== "undefined") {
       brandLogo = <img src={this.props.brandLogo} alt="Logo" width="112" height="28" />
     }
+
     let brand = ''
     if (typeof this.props.brand !== "undefined") {
       brand = this.props.brand
