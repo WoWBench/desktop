@@ -45,7 +45,6 @@ function createApplication () {
   dispatcher.register(wowbench.handle.bind(wowbench));
 
   ipcMain.on('refresh-game-instance', (event, arg) => {
-    console.log(arg);
     InstanceActions.RefreshInstance(arg);
   });
   ipcMain.on('verify-game-instance', (event, arg) => {
@@ -156,7 +155,6 @@ class WoWBench {
   handle (event) {
     switch (event.type) {
       case 'REFRESH_GAME_INSTANCE':
-        console.log('Refreshing game instance', event.instance);
       case 'VERIFY_GAME_INSTANCE':
         this.verifyGameInstance(event);
         break;

@@ -21,9 +21,28 @@ export class InstanceSelector extends React.Component {
     return false;
   }
 
+  selectInstance(e) {
+    GameInstanceActions.SelectInstance(e.target);
+    GameInstanceActions.HideAddInstanceForm();
+  }
+
+  instanceButton(instance) {
+    console.log(instance);
+    return <button key={instance.instance_number} className="button instance-selection" onClick={this.selectInstance}>
+      W{instance.instance_number}
+    </button>;
+  }
+
+  instanceButtons() {
+      let instances = this.props.instances;
+      return Object.keys(instances).map(i => {
+        return this.instanceButton(instances[i]);
+      });
+  }
+
   addInstanceButton() {
     if (!this.hasInstances()) {
-      return <button className="button" onClick={this.showAddInstanceForm}>
+      return <button className="button add-instance" onClick={this.showAddInstanceForm}>
         <FontAwesomeIcon icon="plus" />
       </button>;
     }
@@ -32,14 +51,7 @@ export class InstanceSelector extends React.Component {
 
   render () {
     let addButton = this.addInstanceButton();
-
-    let i = this.props.instances;
-    let instanceButtons;
-
-    if (typeof this.props.instance_count !== "undefined") {
-      let iCount = this.props.instance_count;
-      instanceButtons = '1';
-    }
+    let instanceButtons = this.instanceButtons();
 
     return <div id="instance-selector">
       {instanceButtons}

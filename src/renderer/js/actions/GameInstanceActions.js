@@ -42,3 +42,16 @@ export function ShowAddInstanceForm () {
         type: 'SHOW_ADD_INSTANCE_FORM'
     })
 }
+
+export function HideAddInstanceForm () {
+    dispatcher.dispatch({
+        type: 'HIDE_ADD_INSTANCE_FORM'
+    })
+}
+
+export function SelectInstance (instance) {
+    dispatcher.dispatch({
+        type: 'SELECT_INSTANCE',
+        instance
+    })
+}

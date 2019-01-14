@@ -38,6 +38,7 @@ function init() {
   console.log(`WoWBench :: Version ${ver} [${b}]`);
 
   addStylesheet('bulma');
+  addStylesheet('themes/saurfang');
   addStylesheet('app');
 }
 

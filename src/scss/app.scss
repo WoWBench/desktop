@@ -1,15 +1,8 @@
 :root {
-  --bg-horde: #380000;
-
-  --text-color: #ececec;
+  --text-color: var(--theme-text, #ececec);
   //--bg-color: #000b17;
-  --bg-color: #fff;
+  --bg-color: var(--theme-bg, #fff);
   --navbar-bg: var(--bg-horde);
-
-  // Light Theme (Default
-  //--bg-color: #fff;
-  //--text-color: #313131;
-  //--navbar-color: #ececec;
 }
 
 html, body {
@@ -18,7 +11,7 @@ html, body {
 }
 
 .navbar {
-  background-color: var(--navbar-bg);
+  background-color: var(--theme-navbar-bg, #131313);
   color: var(--navbar-color, --text-color);
 
   .navbar-brand a {

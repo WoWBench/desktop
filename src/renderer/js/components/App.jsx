@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Navbar } from './Bulma/Navbar';
 import { WindowActions } from './WindowActions'
 import { Install } from "./Install";
+import { GameInstance } from './GameInstance'
 import { InstanceSelector } from './InstanceSelector';
 import dispatcher from '../dispatcher';
 import * as GameInstanceActions from '../actions/GameInstanceActions';
@@ -83,6 +84,9 @@ export class App extends React.Component {
           instances[instance.instance_number] = instance
           instance_counter++;
           GameInstanceActions.UpdateInstance(instance);
+          if (y === installs) {
+            GameInstanceActions.SelectInstance(instance);
+          }
         }
       }
       this.setState({instances: instances, instance_count: instance_counter});
@@ -96,7 +100,7 @@ export class App extends React.Component {
       return <Install />
     }
     return (
-      <h1>Hello</h1>
+      <GameInstance />
     )
   }
 
@@ -125,6 +129,8 @@ export class App extends React.Component {
       case 'SHOW_ADD_INSTANCE_FORM':
         this.setState({showingAddInstanceForm: true});
         break;
+      case 'HIDE_ADD_INSTANCE_FORM':
+        this.setState({showingAddInstanceForm: false});
       default:
         break;
     }

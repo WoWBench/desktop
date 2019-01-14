@@ -80,7 +80,7 @@ textarea {
 
         content: ".";
         text-indent: -9999rem;
-        background: url('images/Saurfang.jpg');
+        background: var(--theme-bg-image);
         background-size: cover;
         background-position: center;
         opacity: 0.2;

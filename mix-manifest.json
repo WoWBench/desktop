@@ -1,5 +1,6 @@
 {
     "/dist/app.js": "/dist/app.js",
+    "/dist/themes/saurfang.css": "/dist/themes/saurfang.css",
     "/dist/app.css": "/dist/app.css",
     "/dist/bulma.css": "/dist/bulma.css"
 }

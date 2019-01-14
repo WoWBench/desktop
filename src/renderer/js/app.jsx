@@ -32,7 +32,6 @@ class IPCSender {
     }
 
     handleEvent (event) {
-        console.log(event);
         switch (event.type) {
             case 'REFRESH_GAME_INSTANCE':
                 this.send('refresh-game-instance', event.instance);

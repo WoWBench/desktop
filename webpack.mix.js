@@ -11,6 +11,12 @@ let mix = require('laravel-mix');
  |
  */
 
+let themes = ['saurfang'];
+
+themes.forEach((theme) => {
+  mix.sass('src/scss/themes/' + theme + '.scss', 'dist/themes')
+});
+
 mix
   .options({
     processCssUrls: false

@@ -1,0 +1,10 @@
+@import "../variables";
+
+:root {
+  // General
+  --theme-text: #ececec;
+  // NavBar
+  --theme-navbar-bg: #{$horde_red_1};
+  // Content
+  --theme-bg-image: url('images/saurfang.jpg');
+}
