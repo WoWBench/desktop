@@ -12,7 +12,9 @@ let mix = require('laravel-mix');
  */
 
 mix
-  //.react('src/js/app.js', 'dist')
+  .options({
+    processCssUrls: false
+  })
   .react('src/renderer/js/app.jsx', 'dist')
   .sass('src/scss/app.scss', 'dist')
   .sass('src/scss/bulma.scss', 'dist')

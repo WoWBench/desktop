@@ -72,6 +72,11 @@ class WoWBench {
     this.mainWindow = mainWindow;
   }
 
+  /**
+   * Check if the folder is a valid WoW instance.
+   * @param path
+   * @returns {boolean}
+   */
   isValidWoWFolder (path) {
     try {
       let stat = fs.statSync(path + '/_retail_'); // WoW folder must contain _retail_
@@ -99,9 +104,18 @@ class WoWBench {
   }
 
   loadGameAccounts(path) {
+      let accounts;
 
+      // Retail addons.
+      accounts = fs.readdirSync(path + '/_retail_/WTF/Account');
+
+      return accounts;
   }
 
+  /**
+   * Get the list of addons in the game instance.
+   * @param path
+   */
   loadGameAddons(path) {
     let addons = {}
 

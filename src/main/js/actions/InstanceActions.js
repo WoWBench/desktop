@@ -12,3 +12,15 @@ module.exports.VerifyInstance = function(path, sender) {
     sender
   });
 }
+
+/**
+ * Refresh a game instance (update lists).
+ * @param path
+ * @constructor
+ */
+export function RefreshInstance (path) {
+  dispatcher.dispatch({
+    type: 'REFRESH_GAME_INSTANCE',
+    path
+  });
+}

@@ -12,6 +12,18 @@ export function VerifyInstance (path) {
 }
 
 /**
+ * Refresh a game instance (update lists).
+ * @param path
+ * @constructor
+ */
+export function RefreshInstance (path) {
+    dispatcher.dispatch({
+        type: 'REFRESH_GAME_INSTANCE',
+        path
+    });
+}
+
+/**
  * Add Game Instance to WoWBench (Front End).
  * @param data
  */

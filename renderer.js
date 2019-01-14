@@ -47,9 +47,3 @@ function close() {
 
 // Initialise the storage
 init();
-
-// Load list of game addons.
-ipcRenderer.on('load-game-addons', function (event, args) {
-  let addons = args.addons;
-  console.log(addons);
-});

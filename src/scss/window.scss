@@ -1,6 +1,5 @@
 #app {
     position: fixed;
-    left: 0;
     top: 0;
     width: 100vw;
     height: 100vh;
@@ -50,5 +49,40 @@ textarea {
         &.fa-times {
             color: white;
         }
+    }
+}
+
+// Content
+#content {
+    --reductions-left: 52px; // InstanceSelector (52).
+    background: #000;
+    z-index: 20;
+    color: var(--text-color);
+
+    position: absolute;
+    left: var(--reductions-left);
+    top: 52px;
+    padding: {
+        left: 12px;
+    }
+    width: calc(100vw - var(--reductions-left));
+    height: 100vh;
+    opacity: 1;
+
+    &::after {
+        position: absolute;
+        left: -52px;
+        top: 0;
+        //width: calc(100vw - var(--reductions-left));
+        width: 100vw;
+        height: 100vh;
+        z-index: -250;
+
+        content: ".";
+        text-indent: -9999rem;
+        background: url('images/Saurfang.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
     }
 }

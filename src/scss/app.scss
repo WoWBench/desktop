@@ -7,9 +7,9 @@
   --navbar-bg: var(--bg-horde);
 
   // Light Theme (Default
-  --bg-color: #fff;
-  --text-color: #313131;
-  --navbar-color: #ececec;
+  //--bg-color: #fff;
+  //--text-color: #313131;
+  //--navbar-color: #ececec;
 }
 
 html, body {
@@ -36,3 +36,4 @@ html, body {
 }
 
 @import "window";
+@import "components/instance-selector";

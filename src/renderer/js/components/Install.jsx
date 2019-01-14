@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { ipcRenderer } from 'electron'
 import { FileInput } from './Bulma/FileInput'
 import * as GameInstanceActions from '../actions/GameInstanceActions';
 
@@ -12,8 +11,6 @@ export class Install extends React.Component {
   // @ts-ignore
   addInstall (filesList) {
     let path = filesList[0].path;
-
-    console.log('Adding game instance: ' + path);
     GameInstanceActions.VerifyInstance(path);
   }
 
