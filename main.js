@@ -3,12 +3,18 @@ const dispatcher = require('./src/main/js/dispatcher');
 const InstanceActions = require('./src/main/js/actions/InstanceActions');
 const {app, BrowserWindow, ipcMain} = require('electron');
 const fs = require('fs');
+const APP_DEBUG = true;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
 function createWindow () {
+  // Load React DevTools
+  if (APP_DEBUG) {
+    BrowserWindow.addDevToolsExtension('C:\\Users\\david\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi\\3.5.0_0');
+  }
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
@@ -38,6 +44,10 @@ function createApplication () {
 
   dispatcher.register(wowbench.handle.bind(wowbench));
 
+  ipcMain.on('refresh-game-instance', (event, arg) => {
+    console.log(arg);
+    InstanceActions.RefreshInstance(arg);
+  });
   ipcMain.on('verify-game-instance', (event, arg) => {
     let path = arg;
     let sender = event.sender;
@@ -86,27 +96,36 @@ class WoWBench {
     return false;
   }
 
+  /**
+   * Verify and load a Game Instance.
+   * @param event
+   */
   verifyGameInstance (event) {
-    let path = event.path;
+    let path = event.instance.path;
+    let instance;
     let isValid = this.isValidWoWFolder(path);
 
     if (isValid) {
-      let instance = {}
-      instance.path = path;
+      if (typeof event.instance !== "undefined") {
+        instance = event.instance
+      } else {
+        instance = {}
+        instance.path = path;
+      }
+
       instance.accounts = this.loadGameAccounts(path);
       instance.aceProfiles = this.loadAceProfiles(path);
       instance.weakAuras = this.loadWAs(path);
       instance.addons = this.loadGameAddons(path);
-      this.mainWindow.webContents.send('add-game-instance', instance);
-    } else {
 
+      this.mainWindow.webContents.send('add-game-instance', instance);
     }
   }
 
   loadGameAccounts(path) {
       let accounts;
 
-      // Retail addons.
+      // Retail Accounts
       accounts = fs.readdirSync(path + '/_retail_/WTF/Account');
 
       return accounts;
@@ -136,56 +155,12 @@ class WoWBench {
 
   handle (event) {
     switch (event.type) {
+      case 'REFRESH_GAME_INSTANCE':
+        console.log('Refreshing game instance', event.instance);
       case 'VERIFY_GAME_INSTANCE':
         this.verifyGameInstance(event);
         break;
-      default:
-        break;
+      default: break;
     }
   }
 }
-
-//ipcMain.on('verify-game-install', wowbench.handle.bind(wowbench));
-
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
-/*
-ipcMain.on('add-game-install', async function (event, arg) {
-  let addons = {
-    retail: [],
-  };
-
-  function loadAddons (path) {
-    // Retail addons.
-    let retail = fs.readdirSync(path + '/_retail_/Interface/AddOns/');
-    addons.retail = retail;
-
-    return addons;
-  }
-
-  function isValidWoWFolder (path) {
-    try {
-      let stat = fs.statSync(path + '/_retail_'); // WoW folder must contain _retail_
-      return true;
-    } catch (e) {
-    }
-
-    return false;
-  }
-
-  let path = arg.path;
-
-  let valid = isValidWoWFolder(path);
-
-  if (!valid) {
-    console.log('Game instance is invalid: ' + path);
-    return;
-  }
-
-  // Check for game add-ons.
-
-  loadAddons(path);
-  event.sender.send('load-game-addons', {addons});
-});
-*/

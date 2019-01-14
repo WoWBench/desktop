@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "wowbench",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A World of Warcraft UI configuration tool.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -12,13 +12,11 @@
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/WoWBench/desktop",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "WoW",
+    "Warcraft",
+    "WoWBench"
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
@@ -27,12 +25,9 @@
     "@fortawesome/fontawesome-free": "^5.6.3",
     "cross-env": "^5.2.0",
     "electron": "^3.0.7",
-    "electron-devtools-installer": "^2.2.4",
     "resolve-url-loader": "2.3.1",
     "sass": "^1.15.2",
-    "sass-loader": "7.*",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.2.2"
+    "sass-loader": "7.*"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.12",

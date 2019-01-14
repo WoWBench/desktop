@@ -5,10 +5,10 @@ const dispatcher = require('../dispatcher');
  * @param path
  * @constructor
  */
-module.exports.VerifyInstance = function(path, sender) {
+module.exports.VerifyInstance = function(instance, sender) {
   dispatcher.dispatch({
     type: 'VERIFY_GAME_INSTANCE',
-    path,
+    instance,
     sender
   });
 }
@@ -18,9 +18,9 @@ module.exports.VerifyInstance = function(path, sender) {
  * @param path
  * @constructor
  */
-export function RefreshInstance (path) {
+module.exports.RefreshInstance = function (instance) {
   dispatcher.dispatch({
     type: 'REFRESH_GAME_INSTANCE',
-    path
+    instance
   });
 }

@@ -6,4 +6,13 @@
   top: 52px;
   left: 0;
   background-color: #131313;
+  z-index: 30;
+
+  .button {
+    background: transparent;
+    border: none;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 6px;
+  }
 }

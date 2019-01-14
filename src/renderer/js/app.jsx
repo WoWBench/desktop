@@ -9,22 +9,19 @@ import { ipcRenderer } from 'electron';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
-    faTimes,
-    faUpload
+  faTimes,
+  faUpload,
+  faPlus,
+  faCircle,
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faTimes, faUpload);
+library.add(fab, faTimes, faUpload, faPlus, faCircle);
 
 // Watch the dom for font awesome icons to render.
 import { dom } from '@fortawesome/fontawesome-svg-core'
 dom.watch();
 
-// Render the react application.
-ReactDOM.render(
-    <App />,
-    document.getElementById('app')
-);
-
+// Load the event systems
 class IPCSender {
     constructor (ipc) {
         this.ipc = ipc
@@ -35,9 +32,13 @@ class IPCSender {
     }
 
     handleEvent (event) {
+        console.log(event);
         switch (event.type) {
+            case 'REFRESH_GAME_INSTANCE':
+                this.send('refresh-game-instance', event.instance);
+                break;
             case 'VERIFY_GAME_INSTANCE':
-                this.send('verify-game-instance', event.path);
+                this.send('verify-game-instance', event.instance);
                 break;
             default:
                 break;
@@ -48,8 +49,14 @@ class IPCSender {
 // Dispatch events using IPC.
 const ipcSender = new IPCSender(ipcRenderer);
 
-ipcRenderer.on('add-game-instance', function (event, data) {
-    GameInstanceActions.AddInstance(data);
+ipcRenderer.on('add-game-instance', function (event, instance) {
+    GameInstanceActions.AddInstance(instance);
 });
 
 dispatcher.register(ipcSender.handleEvent.bind(ipcSender));
+
+// Render the react application. (This has to be last otherwise events from mount wont be caught).
+ReactDOM.render(
+    <App />,
+    document.getElementById('app')
+);

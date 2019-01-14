@@ -7,30 +7,38 @@ import dispatcher from '../dispatcher'
 export function VerifyInstance (path) {
     dispatcher.dispatch({
         type: 'VERIFY_GAME_INSTANCE',
-        path
+        instance: {
+            path
+        }
     });
 }
 
 /**
  * Refresh a game instance (update lists).
- * @param path
+ * @param instance
  * @constructor
  */
-export function RefreshInstance (path) {
+export function UpdateInstance (instance) {
+    console.log('dispatching update instance as REFRESH_GAME_INSTANCE with', instance);
     dispatcher.dispatch({
         type: 'REFRESH_GAME_INSTANCE',
-        path
+        instance
     });
 }
 
 /**
  * Add Game Instance to WoWBench (Front End).
- * @param data
+ * @param instance
  */
-export function AddInstance (data) {
+export function AddInstance (instance) {
     dispatcher.dispatch({
         type: 'ADD_GAME_INSTANCE',
-        data
+        instance
     });
 }
 
+export function ShowAddInstanceForm () {
+    dispatcher.dispatch({
+        type: 'SHOW_ADD_INSTANCE_FORM'
+    })
+}
