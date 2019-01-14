@@ -13,7 +13,7 @@ let mix = require('laravel-mix');
 
 mix
   //.react('src/js/app.js', 'dist')
-  .ts('src/ts/app.tsx', 'dist')
+  .react('src/renderer/js/app.jsx', 'dist')
   .sass('src/scss/app.scss', 'dist')
   .sass('src/scss/bulma.scss', 'dist')
   .sourceMaps()

@@ -1,27 +1,20 @@
 import * as React from 'react'
 import { ipcRenderer } from 'electron'
 import { FileInput } from './Bulma/FileInput'
-import { GameManager } from "./WoWBench/GameManager";
+import * as GameInstanceActions from '../actions/GameInstanceActions';
 
-type Props = {
-  manager: GameManager
-}
-
-export class Install extends React.Component<Props> {
-  constructor(props: Props) {
+export class Install extends React.Component {
+  constructor(props) {
     super(props);
     this.addInstall = this.addInstall.bind(this)
   }
 
   // @ts-ignore
   addInstall (filesList) {
-    let manager = this.props.manager;
     let path = filesList[0].path;
 
     console.log('Adding game instance: ' + path);
-    manager.addInstance = manager.addInstance.bind(manager);
-    manager.addInstance(path);
-    ipcRenderer.send('add-game-install', {path});
+    GameInstanceActions.VerifyInstance(path);
   }
 
   render () {

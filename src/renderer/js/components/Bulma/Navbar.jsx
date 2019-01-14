@@ -1,8 +1,6 @@
 import * as React from 'react'
 
-type MyProps = { brand?: string, brandLogo?: any };
-type State = { brand?: string, brandLogo?: any }
-export class Navbar extends React.Component<MyProps, State> {
+export class Navbar extends React.Component {
   /**
    * Has Brand or Logo
    * @returns {boolean}

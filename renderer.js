@@ -45,10 +45,6 @@ function close() {
   app.quit()
 }
 
-function log(message) {
-  console.log(message)
-}
-
 // Initialise the storage
 init();
 
@@ -56,5 +52,4 @@ init();
 ipcRenderer.on('load-game-addons', function (event, args) {
   let addons = args.addons;
   console.log(addons);
-  // manager.loadAddons(data);
 });

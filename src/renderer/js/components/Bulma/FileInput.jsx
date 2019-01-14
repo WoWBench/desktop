@@ -1,18 +1,13 @@
 import * as React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-type InputProps = {
-    change: any
-    label?: string
-}
-
-export class FileInput extends React.Component<InputProps> {
-    constructor (props: any) {
+export class FileInput extends React.Component {
+    constructor (props) {
         super(props);
         this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange (e: any) {
+    handleChange (e) {
         this.props.change(e.target.files);
     }
 

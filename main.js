@@ -1,4 +1,6 @@
 // Modules to control application life and create native browser window
+const dispatcher = require('./src/main/js/dispatcher');
+const InstanceActions = require('./src/main/js/actions/InstanceActions');
 const {app, BrowserWindow, ipcMain} = require('electron');
 const fs = require('fs');
 
@@ -29,10 +31,24 @@ function createWindow () {
   })
 }
 
+function createApplication () {
+  createWindow();
+
+  const wowbench = new WoWBench(mainWindow);
+
+  dispatcher.register(wowbench.handle.bind(wowbench));
+
+  ipcMain.on('verify-game-instance', (event, arg) => {
+    let path = arg;
+    let sender = event.sender;
+    InstanceActions.VerifyInstance(path, sender);
+  });
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', createApplication);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -51,8 +67,76 @@ app.on('activate', function () {
   }
 });
 
+class WoWBench {
+  constructor (mainWindow) {
+    this.mainWindow = mainWindow;
+  }
+
+  isValidWoWFolder (path) {
+    try {
+      let stat = fs.statSync(path + '/_retail_'); // WoW folder must contain _retail_
+      return true;
+    } catch (e) {}
+
+    return false;
+  }
+
+  verifyGameInstance (event) {
+    let path = event.path;
+    let isValid = this.isValidWoWFolder(path);
+
+    if (isValid) {
+      let instance = {}
+      instance.path = path;
+      instance.accounts = this.loadGameAccounts(path);
+      instance.aceProfiles = this.loadAceProfiles(path);
+      instance.weakAuras = this.loadWAs(path);
+      instance.addons = this.loadGameAddons(path);
+      this.mainWindow.webContents.send('add-game-instance', instance);
+    } else {
+
+    }
+  }
+
+  loadGameAccounts(path) {
+
+  }
+
+  loadGameAddons(path) {
+    let addons = {}
+
+    // Retail addons.
+    let retail = fs.readdirSync(path + '/_retail_/Interface/AddOns/');
+    addons.retail = retail;
+
+    return addons;
+  }
+
+  loadAceProfiles(path) {
+
+  }
+
+  loadWAs(path) {
+
+  }
+
+  handle (event) {
+    switch (event.type) {
+      case 'VERIFY_GAME_INSTANCE':
+        this.verifyGameInstance(event);
+        break;
+      default:
+        break;
+    }
+  }
+}
+
+//ipcMain.on('verify-game-install', wowbench.handle.bind(wowbench));
+
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+/*
 ipcMain.on('add-game-install', async function (event, arg) {
   let addons = {
     retail: [],
@@ -90,3 +174,4 @@ ipcMain.on('add-game-install', async function (event, arg) {
   loadAddons(path);
   event.sender.send('load-game-addons', {addons});
 });
+*/
