@@ -12,7 +12,7 @@ let mainWindow;
 function createWindow () {
   // Load React DevTools
   if (APP_DEBUG) {
-    BrowserWindow.addDevToolsExtension('C:\\Users\\david\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi\\3.5.0_0');
+    BrowserWindow.addDevToolsExtension('./devtools/react/3.6.0_0');
   }
 
   // Create the browser window.
